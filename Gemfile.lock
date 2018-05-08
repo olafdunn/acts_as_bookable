@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    acts_as_bookable (0.1.3)
-      activerecord (>= 3.2, < 5.1)
-      ice_cube_chosko (~> 0.1.0)
+    acts_as_bookable (0.1.4)
+      activerecord
+      ice_cube_chosko
 
 GEM
   remote: https://rubygems.org/
@@ -90,7 +90,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     i18n (0.7.0)
-    ice_cube_chosko (0.1.0)
+    ice_cube_chosko (0.2.0)
     json (2.0.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -107,7 +107,6 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-    mysql2 (0.3.21)
     nenv (0.3.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
@@ -206,22 +205,21 @@ PLATFORMS
 DEPENDENCIES
   acts_as_bookable!
   appraisal
-  awesome_print (~> 1.6)
-  barrier (~> 1.0)
+  awesome_print
+  barrier
   byebug
-  coveralls (~> 0.8)
-  database_cleaner (~> 1.5)
-  factory_girl_rails (~> 4.6)
+  coveralls
+  database_cleaner
+  factory_girl_rails
   guard
   guard-rspec
-  mysql2 (~> 0.3.7)
-  pg (~> 0.18)
+  pg
   pry-nav
   rails
   rake
-  rspec (~> 3)
-  rspec-rails (~> 3)
-  sqlite3 (~> 1.3)
+  rspec
+  rspec-rails
+  sqlite3
 
 BUNDLED WITH
-   1.14.3
+   1.16.1

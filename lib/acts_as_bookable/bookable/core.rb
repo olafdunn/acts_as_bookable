@@ -218,13 +218,19 @@ module ActsAsBookable::Bookable
         if (self.booking_opts[:capacity_type] == :open && !overlapped.empty?)
           # if time_type is :range, split in sub-intervals and check the maximum sum of amounts against capacity for each sub-interval
           if (self.booking_opts[:time_type] == :range)
+       
+              
             # Map overlapped bookings to a set of intervals with amount
-            intervals = overlapped.map { |e| {time_start: e.time_start, time_end: e.time_end, amount: e.amount} }
+            removedCancelled = overlapped.reject { |e| e.status==0 }
+              intervals = removedCancelled.map { |e| {time_start: e.time_start, time_end: e.time_end, amount: e.amount, status: e.status} }
+       
             # Make subintervals from overlapped bookings and check capacity for each of them
             ActsAsBookable::TimeUtils.subintervals(intervals) do |a,b,op|
-              res = {amount: a[:amount] + b[:amount]}
-              
+
+                res = {amount: a[:amount] + b[:amount]}
+
               raise ActsAsBookable::AvailabilityError.new ActsAsBookable::T.er('.availability.already_booked', model: self.class.to_s) if (res[:amount] > self.capacity)
+
               res
             end
           # else, just sum the amounts (fixed times are not intervals and they overlap if are the same)
